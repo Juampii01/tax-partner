@@ -21,7 +21,6 @@ export type SessionContext = {
 
 // Lee usuario, rol y partner con el cliente del usuario (RLS aplica).
 // `cache` deduplica la llamada entre layout y página dentro del mismo request.
-// Los tipos son manuales hasta que el paso 2 genere src/types/database.ts.
 export const getSessionContext = cache(async (): Promise<SessionContext | null> => {
   const supabase = await createClient();
 
@@ -46,7 +45,7 @@ export const getSessionContext = cache(async (): Promise<SessionContext | null> 
     userId: claims.sub,
     email: typeof claims.email === "string" ? claims.email : null,
     role,
-    partner: (partner as PartnerSummary | null) ?? null,
+    partner: partner ?? null,
   };
 });
 

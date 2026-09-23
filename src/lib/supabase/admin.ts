@@ -1,6 +1,7 @@
 import "server-only";
 
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "@/types/database";
 
 // Cliente con service role: SALTEA RLS.
 // `import "server-only"` hace fallar el build si algún componente de cliente
@@ -17,7 +18,7 @@ export function createAdminClient() {
     );
   }
 
-  return createSupabaseClient(url, serviceRoleKey, {
+  return createSupabaseClient<Database>(url, serviceRoleKey, {
     auth: {
       autoRefreshToken: false,
       persistSession: false,

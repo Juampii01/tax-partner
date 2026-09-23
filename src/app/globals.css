@@ -15,6 +15,7 @@
   --color-brand-navy: var(--brand-navy);
   --color-brand-navy-dark: var(--brand-navy-dark);
   --color-brand-red: var(--brand-red);
+  --color-brand-red-hover: var(--brand-red-hover);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -60,8 +61,10 @@
 
 :root {
   --brand-navy: #152978;
-  --brand-navy-dark: #0e1c54;
+  /* Mismos valores que GovBidder Connect (src/app/globals.css de Connect). */
+  --brand-navy-dark: #101f5a;
   --brand-red: #e42d2c;
+  --brand-red-hover: #c92625;
 
   --background: #ffffff;
   --foreground: #0f172a;
