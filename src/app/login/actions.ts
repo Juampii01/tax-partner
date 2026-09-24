@@ -22,6 +22,12 @@ export async function sendMagicLink(
     return { status: "error", message: "Enter a valid email address.", email };
   }
 
+  // OJO: el template "Magic Link" de Supabase es
+  //   {{ .RedirectTo }}&token_hash={{ .TokenHash }}&type=email
+  // y concatena con "&", así que redirectTo TIENE que llevar ya un "?".
+  // Por eso `next` va siempre (safeNextPath nunca devuelve vacío).
+  // Si Supabase no reconoce la URL (no está en Redirect URLs), usa el Site URL
+  // pelado y el link sale roto: cada dominio nuevo hay que agregarlo allá.
   const origin = await getAppOrigin();
   const redirectTo = new URL("/auth/confirm", origin);
   redirectTo.searchParams.set("next", next);
